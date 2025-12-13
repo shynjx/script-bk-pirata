@@ -1,19 +1,3 @@
--- LEARN HOW TO CODE GUYS DONT BE SKID :)
--- https://discord.gg/VgMatcAwvk
-
- -- FULLY AI GENERATED, NO ONE IN SAB CAN CODE
-
---[[
-    Brainrot Finder v5.1 (Flat "Titanz" Edition)
-    Reorganized and cleaned up for better readability
-    Structure: Config -> Services -> Helpers -> Features -> GUI -> Init
-]]
-
--- ============================================================
--- SECTION 1: CONFIGURATION (REVAMPED)
--- ============================================================
-
--- Initialize global config if it doesn't exist
 getgenv().BRAINROT_CONFIG = {
         -- Keybinds
         TELEPORT_KEYBIND       = nil,
