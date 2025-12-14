@@ -1,3 +1,19 @@
+-- LEARN HOW TO CODE GUYS DONT BE SKID :)
+-- https://discord.gg/VgMatcAwvk
+
+ -- FULLY AI GENERATED, NO ONE IN SAB CAN CODE
+
+--[[
+    Brainrot Finder v5.1 (Flat "Titanz" Edition)
+    Reorganized and cleaned up for better readability
+    Structure: Config -> Services -> Helpers -> Features -> GUI -> Init
+]]
+
+-- ============================================================
+-- SECTION 1: CONFIGURATION (REVAMPED)
+-- ============================================================
+
+-- Initialize global config if it doesn't exist
 getgenv().BRAINROT_CONFIG = {
         -- Keybinds
         TELEPORT_KEYBIND       = nil,
@@ -4673,22 +4689,43 @@ local function createStatsTab(parent)
 end
 
 local function createFavoritesTab(parent)
-    local container = createElement("Frame", {
+    -- TUDO da UI vai viver aqui (1 único local)
+    local ui = {}
+
+    -- CONTAINER PRINCIPAL
+    ui.container = createElement("Frame", {
         Name = "FavoritesTab",
         Size = UDim2.new(1, 0, 1, 0),
         BackgroundTransparency = 1,
         Visible = false,
         Parent = parent,
     })
-    
-    local headerFrame = createElement("Frame", {
+
+    -- HEADER
+    ui.headerFrame = createElement("Frame", {
         Size = UDim2.new(1, -20, 0, 60),
         Position = UDim2.new(0, 10, 0, 10),
         BackgroundColor3 = COLORS.Surface,
         BackgroundTransparency = COLORS.SurfaceTransparency,
         BorderSizePixel = 0,
-        Parent = container,
+        Parent = ui.container,
     })
+
+    -- EXEMPLO DE TEXTO
+    ui.headerTitle = createElement("TextLabel", {
+        Size = UDim2.new(1, -20, 1, 0),
+        Position = UDim2.new(0, 10, 0, 0),
+        BackgroundTransparency = 1,
+        Text = "Favorites",
+        TextColor3 = COLORS.Text,
+        Font = Enum.Font.GothamBold,
+        TextSize = 20,
+        Parent = ui.headerFrame,
+    })
+
+    return ui
+end
+
     
     createElement("UICorner", {
         CornerRadius = UDim.new(0, 12),
