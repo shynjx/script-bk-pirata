@@ -5099,7 +5099,6 @@ end
     refreshFavoritesList()
     
     return container, refreshFavoritesList
-end
 
 -- ============================================================
 -- SECTION 21: ACTIONS TAB CREATION
