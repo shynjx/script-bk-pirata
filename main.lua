@@ -5099,57 +5099,60 @@ end
     refreshFavoritesList()
     
     return container, refreshFavoritesList
+end
 
 -- ============================================================
 -- SECTION 21: ACTIONS TAB CREATION
 -- ============================================================
 
 local function createActionsTab(parent)
-    local container = createElement("Frame", {
+    local ui = {}
+
+    ui.container = createElement("Frame", {
         Name = "ActionsTab",
         Size = UDim2.new(1, 0, 1, 0),
         BackgroundTransparency = 1,
         Visible = false,
         Parent = parent,
     })
-    
-    local scroll = createElement("ScrollingFrame", {
+
+    ui.scroll = createElement("ScrollingFrame", {
         Size = UDim2.new(1, 0, 1, 0),
         BackgroundTransparency = 1,
         ScrollBarThickness = 6,
         ScrollBarImageColor3 = COLORS.Purple,
         BorderSizePixel = 0,
-        CanvasSize = UDim2.new(0, 0, 0, 0), -- Will be updated dynamically
-        AutomaticCanvasSize = Enum.AutomaticSize.Y, -- This fixes the scrolling issue
-        Parent = container,
+        CanvasSize = UDim2.new(0, 0, 0, 0),
+        AutomaticCanvasSize = Enum.AutomaticSize.Y,
+        Parent = ui.container,
     })
-    
-    local list = createElement("UIListLayout", {
+
+    ui.list = createElement("UIListLayout", {
         Padding = UDim.new(0, 12),
         SortOrder = Enum.SortOrder.LayoutOrder,
-        Parent = scroll,
+        Parent = ui.scroll,
     })
-    
+
     -- Update canvas size when content changes
-    list:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
-        scroll.CanvasSize = UDim2.new(0, 0, 0, list.AbsoluteContentSize.Y + 20)
+    ui.list:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+        ui.scroll.CanvasSize = UDim2.new(0, 0, 0, ui.list.AbsoluteContentSize.Y + 20)
     end)
-    
-    local order = 1
-    local function nextOrder()
-        order += 1
-        return order
+
+    ui.order = 1
+    function ui.nextOrder()
+        ui.order += 1
+        return ui.order
     end
-    
-    local function addHeader(text)
+
+    function ui.addHeader(text)
         local wrap = createElement("Frame", {
             Size = UDim2.new(1, -20, 0, 26),
             BackgroundTransparency = 1,
-            Parent = scroll,
-            LayoutOrder = nextOrder(),
+            Parent = ui.scroll,
+            LayoutOrder = ui.nextOrder(),
         })
-        
-        local text = createElement("TextLabel", {
+
+        local label = createElement("TextLabel", {
             Size = UDim2.new(1, 0, 1, 0),
             BackgroundTransparency = 1,
             Text = text,
@@ -5160,9 +5163,25 @@ local function createActionsTab(parent)
             Position = UDim2.new(0, 10, 0, 0),
             Parent = wrap,
         })
-        makeTextGlow(text, Color3.fromRGB(255, 140, 255), Color3.fromRGB(180, 220, 255), 1.2, 0.3)
-        addTextGradient(text, Color3.new(0.815686, 0.305882, 1.000000), Color3.fromHSV(0.578947, 0.298039, 1.000000), 45) 
+
+        makeTextGlow(label,
+            Color3.fromRGB(255, 140, 255),
+            Color3.fromRGB(180, 220, 255),
+            1.2,
+            0.3
+        )
+
+        addTextGradient(
+            label,
+            Color3.new(0.815686, 0.305882, 1.000000),
+            Color3.fromHSV(0.578947, 0.298039, 1.000000),
+            45
+        )
     end
+
+    return ui
+end
+
     
     addHeader("KEYBINDS")
     
