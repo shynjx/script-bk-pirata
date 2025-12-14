@@ -5097,9 +5097,6 @@ end
     end)
     
     refreshFavoritesList()
-    
-end
-
 -- ============================================================
 -- SECTION 21: ACTIONS TAB CREATION
 -- ============================================================
@@ -6419,3 +6416,4 @@ if CONFIG.AUTO_HIDE_ENABLED then
         end
     end)
 end
+
