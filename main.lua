@@ -5098,7 +5098,6 @@ end
     
     refreshFavoritesList()
     
-    return container, refreshFavoritesList
 end
 
 -- ============================================================
